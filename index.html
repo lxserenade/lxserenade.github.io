@@ -318,7 +318,8 @@
       
         
           
-            <p>This is my new Post</p>
+            <h2 id="Delete-duplicated-rows"><a href="#Delete-duplicated-rows" class="headerlink" title="Delete duplicated rows"></a>Delete duplicated rows</h2><h3 id="difference-of-these-two-statements"><a href="#difference-of-these-two-statements" class="headerlink" title="difference of these two statements"></a>difference of these two statements</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> my_table </div><div class="line"><span class="keyword">where</span> <span class="keyword">ROWID</span> <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> <span class="keyword">max</span>(<span class="keyword">ROWID</span>) <span class="keyword">from</span> my_table <span class="keyword">GROUP</span> <span class="keyword">BY</span> (my_column));</div><div class="line"></div><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> my_table </div><div class="line"><span class="keyword">where</span> <span class="keyword">ROWID</span> <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> <span class="keyword">min</span>(<span class="keyword">ROWID</span>) <span class="keyword">from</span> my_table <span class="keyword">GROUP</span> <span class="keyword">BY</span> (my_column));</div></pre></td></tr></table></figure>
+<p>to be complete…</p>
 
           
         
