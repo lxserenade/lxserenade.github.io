@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Haskwell," />
 
 
 
@@ -90,13 +90,17 @@
 
 
 
+<meta name="description" content="Learning HaskellCourse descriptionCIS 194: Introduction to Haskell (Fall 2016) Haskell is a high-level, purely functional programming language with a strong static type system and elegant mathematical">
+<meta name="keywords" content="Haskwell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Haskell Lesson 1">
-<meta property="og:url" content="http://yoursite.com/2017/05/10/Haskell-Lesson-1/index.html">
+<meta property="og:title" content="Learning Haskell">
+<meta property="og:url" content="http://yoursite.com/2017/05/05/Learning Haskell/index.html">
 <meta property="og:site_name" content="Li Xia&#39;s Site">
-<meta property="og:updated_time" content="2017-05-10T08:54:28.000Z">
+<meta property="og:description" content="Learning HaskellCourse descriptionCIS 194: Introduction to Haskell (Fall 2016) Haskell is a high-level, purely functional programming language with a strong static type system and elegant mathematical">
+<meta property="og:updated_time" content="2017-05-10T08:15:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Haskell Lesson 1">
+<meta name="twitter:title" content="Learning Haskell">
+<meta name="twitter:description" content="Learning HaskellCourse descriptionCIS 194: Introduction to Haskell (Fall 2016) Haskell is a high-level, purely functional programming language with a strong static type system and elegant mathematical">
 
 
 
@@ -124,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/10/Haskell-Lesson-1/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/05/Learning Haskell/"/>
 
 
 
 
 
-  <title>Haskell Lesson 1 | Li Xia's Site</title>
+  <title>Learning Haskell | Li Xia's Site</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -249,7 +253,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/Haskell-Lesson-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/05/Learning Haskell/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xia Li">
@@ -266,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Haskell Lesson 1</h1>
+          <h1 class="post-title" itemprop="name headline">Learning Haskell</h1>
         
 
         <div class="post-meta">
@@ -278,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-10T16:04:41+08:00">
-                2017-05-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-05T18:40:01+08:00">
+                2017-05-05
               </time>
             
 
@@ -313,7 +317,25 @@
       
 
       
-        
+        <h2 id="Learning-Haskell"><a href="#Learning-Haskell" class="headerlink" title="Learning Haskell"></a>Learning Haskell</h2><h3 id="Course-description"><a href="#Course-description" class="headerlink" title="Course description"></a>Course description</h3><p><a href="https://www.seas.upenn.edu/~cis194/fall16/" target="_blank" rel="external">CIS 194: Introduction to Haskell (Fall 2016)</a></p>
+<p>Haskell is a high-level, purely functional programming language with a strong static type system and elegant mathematical underpinnings. It is being increasingly used in industry by organizations such as Facebook, AT&amp;T, and NASA, along with several financial firms. We will explore the joys of functional programming, using Haskell as a vehicle. In the first part of the course, you will learn to use Haskell to easily and conveniently write practical programs. The last couple of weeks will consist of several special topics that explore advanced features of Haskell. Evaluation will be based on class participation, weekly programming assignments, and an open-ended final project.</p>
+<h3 id="Good-Haskell-Style"><a href="#Good-Haskell-Style" class="headerlink" title="Good Haskell Style"></a>Good Haskell Style</h3><ol>
+<li>DO use camelCase for function and variable names.<br>Variant: Use ids_with_underscores for local variables only, and use camelCase for global ones.</li>
+<li>DO use descriptive function names, which are as long as they need to be but no longer than they have to be.<ul>
+<li>Good: solveRemaining.</li>
+<li>Bad: slv.</li>
+<li>Ugly: solveAllTheCasesWhichWeHaven’tYetProcessed.</li>
+</ul>
+</li>
+<li>DON’T use tab characters. Ever.<br>Haskell is layout-sensitive and tabs Mess Everything Up. I don’t care how you feel about tabs when coding in other languages. Just trust me on this one. Note this does not mean you need to hit space a zillion times to indent each line; your Favorite Editor ought to support auto-indentation using spaces instead of tabs.</li>
+<li>DO keep lines at a natural length, and avoid long lines when it costs readability.<br>I am not a fan of hard rules when it comes to line length, so I give you no precise number. Some lines just have to be a bit longer than usual.</li>
+<li>DO give every top-level function a type signature. Type signatures enhance documentation, clarify thinking, and provide nesting sites for endangered bird species. Top-level type signatures also result in better error messages. With no type signatures, type errors tend to show up far from where the real problem is; explicit type signatures help localize type errors.<br>Locally defined functions and constants (part of a expression or clause) do not need type signatures, but adding them doesn’t hurt (in particular, the argument above about localizing type errors still applies).</li>
+<li>DO precede every top-level function by a comment explaining what it does.</li>
+<li>DO use -Wall. Either pass -Wall to ghc on the command line, or (easier) put<br>{-# OPTIONS_GHC -Wall #-}<br>at the top of your .hs file. All your submitted programs should compile with no warnings.</li>
+<li>DO, as much as possible, break up your programs into small functions that do one thing, and compose them to create more complex functions.</li>
+<li>DO make all your functions total. That is, they should give sensible results (and not crash) for every input.</li>
+</ol>
+
       
     </div>
 
@@ -340,6 +362,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Haskwell/" rel="tag"># Haskwell</a>
+          
+        </div>
+      
 
       
         
@@ -349,8 +377,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/05/Learning Haskell/" rel="next" title="Learning Haskell">
-                <i class="fa fa-chevron-left"></i> Learning Haskell
+              <a href="/2017/05/05/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -358,6 +386,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/10/Haskell-Lesson-1/" rel="prev" title="Haskell Lesson 1">
+                Haskell Lesson 1 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -404,8 +436,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -458,6 +499,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-Haskell"><span class="nav-number">1.</span> <span class="nav-text">Learning Haskell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Course-description"><span class="nav-number">1.1.</span> <span class="nav-text">Course description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Good-Haskell-Style"><span class="nav-number">1.2.</span> <span class="nav-text">Good Haskell Style</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
