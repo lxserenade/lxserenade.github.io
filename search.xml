@@ -1,21 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[Haskell Lesson 1]]></title>
-    <url>%2F2017%2F05%2F10%2FHaskell-Lesson-1%2F</url>
-    <content type="text"><![CDATA[--- title: Haskell Lesson 1 date: 2017-05-10 16:04:41 tags: --- # Exercise 1: Traffic lights > In the class, we defined a traffic light animation. Real traffic lights have an amber light in the middle. > Change the code to include the yellow light, and animate a correct sequence of traffic light signalling: > * a long green phase > * a short amber phase > * a long red phase > * a short red and amber phase1 > * back to green ```haskell {-# OPTIONS_GHC -fno-warn-warnings-deprecations -fno-warn-unused-binds #-} import CodeWorld main :: IO () main = exercise1 -- Fill in the blanks! (When I say blanks, I mean undefineds) -- Exercise 1 botCircle, midCircle, topCircle :: Color -> Picture botCircle c = colored c (translated 0 (-3) (solidCircle 1)) midCircle c = colored c (translated 0 0 (solidCircle 1)) topCircle c = colored c (translated 0 3 (solidCircle 1)) frame :: Picture frame = rectangle 2.5 9.5 trafficLight :: Integer -> Picture trafficLight 0 = botCircle green & topCircle black & midCircle black & frame -- G trafficLight 1 = botCircle black & topCircle black & midCircle yellow & frame -- Y trafficLight 2 = botCircle black & topCircle red & midCircle black & frame -- R trafficLight 3 = botCircle black & topCircle red & midCircle yellow & frame -- RY trafficController :: Double -> Picture trafficController t | round (t) `mod` 6 == 0||round (t) `mod` 6 == 1 = trafficLight 0 | round (t) `mod` 6 == 2 = trafficLight 1 | round (t) `mod` 6 == 3||round (t) `mod` 6 == 4 = trafficLight 2 | otherwise = trafficLight 3 trafficLightAnimation :: Double -> Picture trafficLightAnimation = trafficController exercise1 :: IO () exercise1 = animationOf trafficLightAnimation ```]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Learning Haskell]]></title>
-    <url>%2F2017%2F05%2F05%2FLearning%20Haskell%2F</url>
-    <content type="text"><![CDATA[--- title: Learning Haskell date: 2017-05-05 18:40:01 tags: Haskwell --- ## Learning Haskell ### Course description [CIS 194: Introduction to Haskell (Fall 2016)](https://www.seas.upenn.edu/~cis194/fall16/) Haskell is a high-level, purely functional programming language with a strong static type system and elegant mathematical underpinnings. It is being increasingly used in industry by organizations such as Facebook, AT&T, and NASA, along with several financial firms. We will explore the joys of functional programming, using Haskell as a vehicle. In the first part of the course, you will learn to use Haskell to easily and conveniently write practical programs. The last couple of weeks will consist of several special topics that explore advanced features of Haskell. Evaluation will be based on class participation, weekly programming assignments, and an open-ended final project. ### Good Haskell Style 1. DO use camelCase for function and variable names. Variant: Use ids_with_underscores for local variables only, and use camelCase for global ones. 2. DO use descriptive function names, which are as long as they need to be but no longer than they have to be. - Good: solveRemaining. - Bad: slv. - Ugly: solveAllTheCasesWhichWeHaven'tYetProcessed. 3. DON’T use tab characters. Ever. Haskell is layout-sensitive and tabs Mess Everything Up. I don’t care how you feel about tabs when coding in other languages. Just trust me on this one. Note this does not mean you need to hit space a zillion times to indent each line; your Favorite Editor ought to support auto-indentation using spaces instead of tabs. 4. DO keep lines at a natural length, and avoid long lines when it costs readability. I am not a fan of hard rules when it comes to line length, so I give you no precise number. Some lines just have to be a bit longer than usual. 5. DO give every top-level function a type signature. Type signatures enhance documentation, clarify thinking, and provide nesting sites for endangered bird species. Top-level type signatures also result in better error messages. With no type signatures, type errors tend to show up far from where the real problem is; explicit type signatures help localize type errors. Locally defined functions and constants (part of a expression or clause) do not need type signatures, but adding them doesn’t hurt (in particular, the argument above about localizing type errors still applies). 6. DO precede every top-level function by a comment explaining what it does. 7. DO use -Wall. Either pass -Wall to ghc on the command line, or (easier) put {-# OPTIONS_GHC -Wall #-} at the top of your .hs file. All your submitted programs should compile with no warnings. 8. DO, as much as possible, break up your programs into small functions that do one thing, and compose them to create more complex functions. 9. DO make all your functions total. That is, they should give sensible results (and not crash) for every input.]]></content>
-      <tags>
-        <tag>Haskwell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2017%2F05%2F05%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[--- title: Hello World --- Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues). ## Quick Start ### Create a new post ``` bash $ hexo new "My New Post" ``` More info: [Writing](https://hexo.io/docs/writing.html) ### Run server ``` bash $ hexo server ``` More info: [Server](https://hexo.io/docs/server.html) ### Generate static files ``` bash $ hexo generate ``` More info: [Generating](https://hexo.io/docs/generating.html) ### Deploy to remote sites ``` bash $ hexo deploy ``` More info: [Deployment](https://hexo.io/docs/deployment.html)]]></content>
-  </entry>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[Haskell Lesson 1]]></title>
+      <url>/2017/05/10/Haskell-Lesson-1/</url>
+      <content type="html"><![CDATA[<h1 id="Exercise-1-Traffic-lights"><a href="#Exercise-1-Traffic-lights" class="headerlink" title="Exercise 1: Traffic lights"></a>Exercise 1: Traffic lights</h1><blockquote>
+<p>In the class, we defined a traffic light animation. Real traffic lights have an amber light in the middle.<br>Change the code to include the yellow light, and animate a correct sequence of traffic light signalling:</p>
+<ul>
+<li>a long green phase</li>
+<li>a short amber phase</li>
+<li>a long red phase</li>
+<li>a short red and amber phase1</li>
+<li>back to green</li>
+</ul>
+</blockquote>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&#123;-# OPTIONS_GHC -fno-warn-warnings-deprecations -fno-warn-unused-binds #-&#125;</span></div><div class="line"><span class="keyword">import</span> CodeWorld</div><div class="line"></div><div class="line"><span class="title">main</span> :: <span class="type">IO</span> ()</div><div class="line"><span class="title">main</span> = exercise1</div><div class="line"></div><div class="line"><span class="comment">-- Fill in the blanks! (When I say blanks, I mean undefineds)</span></div><div class="line"></div><div class="line"><span class="comment">-- Exercise 1</span></div><div class="line"></div><div class="line"><span class="title">botCircle</span>, midCircle, topCircle :: <span class="type">Color</span> -&gt; <span class="type">Picture</span></div><div class="line"><span class="title">botCircle</span> c = colored c (translated <span class="number">0</span> (<span class="number">-3</span>) (solidCircle <span class="number">1</span>))</div><div class="line"><span class="title">midCircle</span> c = colored c (translated <span class="number">0</span> <span class="number">0</span> (solidCircle <span class="number">1</span>))</div><div class="line"><span class="title">topCircle</span> c = colored c (translated <span class="number">0</span> <span class="number">3</span>  (solidCircle <span class="number">1</span>))</div><div class="line"></div><div class="line"><span class="title">frame</span> :: <span class="type">Picture</span></div><div class="line"><span class="title">frame</span> = rectangle <span class="number">2.5</span> <span class="number">9.5</span></div><div class="line"></div><div class="line"><span class="title">trafficLight</span> :: <span class="type">Integer</span> -&gt; <span class="type">Picture</span></div><div class="line"><span class="title">trafficLight</span> <span class="number">0</span>  = botCircle green &amp; topCircle black &amp; midCircle black &amp; frame <span class="comment">-- G</span></div><div class="line"><span class="title">trafficLight</span> <span class="number">1</span> = botCircle black &amp; topCircle black &amp; midCircle yellow  &amp; frame <span class="comment">-- Y</span></div><div class="line"><span class="title">trafficLight</span> <span class="number">2</span> = botCircle black &amp; topCircle red &amp; midCircle black  &amp; frame <span class="comment">-- R</span></div><div class="line"><span class="title">trafficLight</span> <span class="number">3</span> = botCircle black &amp; topCircle red &amp; midCircle yellow  &amp; frame <span class="comment">-- RY</span></div><div class="line"></div><div class="line"><span class="title">trafficController</span> :: <span class="type">Double</span> -&gt; <span class="type">Picture</span></div><div class="line"><span class="title">trafficController</span> t</div><div class="line">  | round (t) `mod` <span class="number">6</span> == <span class="number">0</span>||round (t) `mod` <span class="number">6</span> == <span class="number">1</span> = trafficLight <span class="number">0</span></div><div class="line">  | round (t) `mod` <span class="number">6</span> == <span class="number">2</span> = trafficLight <span class="number">1</span></div><div class="line">  | round (t) `mod` <span class="number">6</span> == <span class="number">3</span>||round (t) `mod` <span class="number">6</span> == <span class="number">4</span> = trafficLight <span class="number">2</span></div><div class="line">  | otherwise                = trafficLight <span class="number">3</span></div><div class="line"></div><div class="line"><span class="title">trafficLightAnimation</span> :: <span class="type">Double</span> -&gt; <span class="type">Picture</span></div><div class="line"><span class="title">trafficLightAnimation</span> = trafficController</div><div class="line"></div><div class="line"><span class="title">exercise1</span> :: <span class="type">IO</span> ()</div><div class="line"><span class="title">exercise1</span> = animationOf trafficLightAnimation</div></pre></td></tr></table></figure>
+<iframe width="400" height="400" src="https://code.world/run.html?mode=haskell&dhash=DSvJ_kHW8DpR7l3FoVLgPzA"> </iframe>]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Learning Haskell]]></title>
+      <url>/2017/05/05/Learning%20Haskell/</url>
+      <content type="html"><![CDATA[<h2 id="Learning-Haskell"><a href="#Learning-Haskell" class="headerlink" title="Learning Haskell"></a>Learning Haskell</h2><h3 id="Course-description"><a href="#Course-description" class="headerlink" title="Course description"></a>Course description</h3><p><a href="https://www.seas.upenn.edu/~cis194/fall16/" target="_blank" rel="external">CIS 194: Introduction to Haskell (Fall 2016)</a></p>
+<p>Haskell is a high-level, purely functional programming language with a strong static type system and elegant mathematical underpinnings. It is being increasingly used in industry by organizations such as Facebook, AT&amp;T, and NASA, along with several financial firms. We will explore the joys of functional programming, using Haskell as a vehicle. In the first part of the course, you will learn to use Haskell to easily and conveniently write practical programs. The last couple of weeks will consist of several special topics that explore advanced features of Haskell. Evaluation will be based on class participation, weekly programming assignments, and an open-ended final project.</p>
+<h3 id="Good-Haskell-Style"><a href="#Good-Haskell-Style" class="headerlink" title="Good Haskell Style"></a>Good Haskell Style</h3><ol>
+<li>DO use camelCase for function and variable names.<br>Variant: Use ids_with_underscores for local variables only, and use camelCase for global ones.</li>
+<li>DO use descriptive function names, which are as long as they need to be but no longer than they have to be.<ul>
+<li>Good: solveRemaining.</li>
+<li>Bad: slv.</li>
+<li>Ugly: solveAllTheCasesWhichWeHaven’tYetProcessed.</li>
+</ul>
+</li>
+<li>DON’T use tab characters. Ever.<br>Haskell is layout-sensitive and tabs Mess Everything Up. I don’t care how you feel about tabs when coding in other languages. Just trust me on this one. Note this does not mean you need to hit space a zillion times to indent each line; your Favorite Editor ought to support auto-indentation using spaces instead of tabs.</li>
+<li>DO keep lines at a natural length, and avoid long lines when it costs readability.<br>I am not a fan of hard rules when it comes to line length, so I give you no precise number. Some lines just have to be a bit longer than usual.</li>
+<li>DO give every top-level function a type signature. Type signatures enhance documentation, clarify thinking, and provide nesting sites for endangered bird species. Top-level type signatures also result in better error messages. With no type signatures, type errors tend to show up far from where the real problem is; explicit type signatures help localize type errors.<br>Locally defined functions and constants (part of a expression or clause) do not need type signatures, but adding them doesn’t hurt (in particular, the argument above about localizing type errors still applies).</li>
+<li>DO precede every top-level function by a comment explaining what it does.</li>
+<li>DO use -Wall. Either pass -Wall to ghc on the command line, or (easier) put<br>{-# OPTIONS_GHC -Wall #-}<br>at the top of your .hs file. All your submitted programs should compile with no warnings.</li>
+<li>DO, as much as possible, break up your programs into small functions that do one thing, and compose them to create more complex functions.</li>
+<li>DO make all your functions total. That is, they should give sensible results (and not crash) for every input.</li>
+</ol>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Haskwell </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>/2017/05/05/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+      
+        
+    </entry>
+    
+  
+  
 </search>
