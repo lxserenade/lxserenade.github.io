@@ -250,6 +250,141 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/OpenShift-directory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xia Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Li Xia's Site">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/18/OpenShift-directory/" itemprop="url">OpenShift directory</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-18T15:27:56+08:00">
+                2017-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Filesystem-Overview"><a href="#Filesystem-Overview" class="headerlink" title="Filesystem Overview"></a>Filesystem Overview</h1><p><a href="https://developers.openshift.com/managing-your-applications/filesystem.html" target="_blank" rel="external">quick reference</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── app-deployments</div><div class="line">│   ├── 2017-05-16_05-41-04.349</div><div class="line">│   ├── by-id</div><div class="line">│   └── current -&gt; 2017-05-16_05-41-04.349</div><div class="line">├── app-root</div><div class="line">│   ├── build-dependencies -&gt; runtime/build-dependencies</div><div class="line">│   ├── data</div><div class="line">│   ├── dependencies -&gt; runtime/dependencies</div><div class="line">│   ├── logs</div><div class="line">│   ├── repo -&gt; runtime/repo</div><div class="line">│   └── runtime</div><div class="line">├── .auth</div><div class="line">├── cron</div><div class="line">│   ├── bin</div><div class="line">│   ├── configuration</div><div class="line">│   ├── data</div><div class="line">│   ├── env</div><div class="line">│   ├── etc</div><div class="line">│   ├── metadata</div><div class="line">│   ├── pid</div><div class="line">│   └── run</div><div class="line">├── .env</div><div class="line">│   ├── ciscoit-rabbitmq</div><div class="line">│   ├── mongodb</div><div class="line">│   ├── mysql</div><div class="line">│   ├── postgresql</div><div class="line">│   └── user_vars</div><div class="line">├── gear-registry</div><div class="line">├── .gem</div><div class="line">├── git</div><div class="line">│   └── application-name.git</div><div class="line">├── haproxy</div><div class="line">│   ├── bin</div><div class="line">│   ├── conf</div><div class="line">│   ├── env</div><div class="line">│   ├── hooks</div><div class="line">│   ├── metadata</div><div class="line">│   ├── run</div><div class="line">│   ├── sessions</div><div class="line">│   ├── usr -&gt; /var/lib/openshift/.cartridge_repository/redhat-haproxy/0.0.24.2/usr</div><div class="line">│   └── versions</div><div class="line">├── jbossews</div><div class="line">│   ├── bin</div><div class="line">│   ├── conf</div><div class="line">│   ├── env</div><div class="line">│   ├── hooks</div><div class="line">│   ├── lib -&gt; /etc/alternatives/jbossews-2.0/lib</div><div class="line">│   ├── metadata</div><div class="line">│   ├── run</div><div class="line">│   ├── template</div><div class="line">│   ├── tmp</div><div class="line">│   ├── usr -&gt; /var/lib/openshift/.cartridge_repository/redhat-jbossews/0.0.30.1/usr</div><div class="line">│   └── webapps -&gt; /var/lib/openshift/application-name1-1/app-root/runtime/dependencies/jbossews/webapps</div><div class="line">├── .m2 -&gt; /var/lib/openshift/application-name1-1/app-root/runtime/build-dependencies/.m2</div><div class="line">├── .openshift_ssh</div><div class="line">├── .sandbox </div><div class="line">├── .ssh </div><div class="line">└── .tmp</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="env"><a href="#env" class="headerlink" title=".env"></a>.env</h2><p>  This directory contains all the information that OpenShift provides pertaining to Environment Variables. In the directory you can find a file per environment variable containing its value. OpenShift automatically converts the information to real environment variables and you can read the values from there.</p>
+<hr>
+<h2 id="app-root"><a href="#app-root" class="headerlink" title="app-root"></a>app-root</h2><p><strong>app-root</strong> is the only directory that you interact with directly (although not with all of it). There are two important directories that you should know about: <strong>./repo</strong> and <strong>./data</strong></p>
+<h3 id="repo"><a href="#repo" class="headerlink" title="repo"></a>repo</h3><p>When your application is deployed and its build built (<a href="https://developers.openshift.com/managing-your-applications/action-hooks.html" target="_blank" rel="external">action hooks</a> are being run, etc.), the code is checked out into this directory and all the required steps are run in this directory as well. For most cartridges this directory is also a working directory once the application is spun up.</p>
+<h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3><p>If you create a non-scalable application, this directory can be used for persistent storage.<br>OpenShift makes sure the data in this directory are not lost on application re-deployments, etc.<br>This directory is represented by the OPENSHIFT_DATA_DIR environment variable. Whenever it is possible it is recommended to use the environment variable to determine the actual location of the directory.</p>
+<h3 id="runtime"><a href="#runtime" class="headerlink" title="runtime"></a>runtime</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">runtime/</div><div class="line">├── build-dependencies</div><div class="line">├── data -&gt; ../data</div><div class="line">├── dependencies</div><div class="line">│   └── jbossews</div><div class="line">│       └── webapps</div><div class="line">└── repo</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="app-deployments"><a href="#app-deployments" class="headerlink" title="app-deployments"></a>app-deployments</h2><p>Deployments provide a robust feature-set for managing application deployments over time. Every time you deploy new version of your application to OpenShift, it creates a new deployment for that particular application. A deployment is a snapshot of the application that is ready to be deployed. This means that it contains a runnable application after all the hook and continuous integration tasks were run.</p>
+<p>As an example using a Java application, it will contain a WAR/EAR file that was built using Maven as part of the code push to OpenShift. All this is handled natively by the platform and does not require anything from the developer.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">app-deployments/</div><div class="line">├── 2017-05-16_05-41-04.349</div><div class="line">│   ├── build-dependencies</div><div class="line">│   ├── dependencies</div><div class="line">│   └── repo</div><div class="line">├── by-id</div><div class="line">│   └── dae0c37a -&gt; ../2017-05-16_05-41-04.349</div><div class="line">└── current -&gt; 2017-05-16_05-41-04.349</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="cron"><a href="#cron" class="headerlink" title="cron"></a>cron</h2><p>The jobs are organized in .openshift/cron directory of your application’s source. Depending on how often you would like to execute the job, you place them in minutely, hourly, daily, monthly, monthly.</p>
+<p>The jobs are executed directly. If it is a script, use the “shebang” line to specify the interpreter to execute it.</p>
+<blockquote>
+<p>See also<br><a href="https://blog.openshift.com/getting-started-with-cron-jobs-on-openshift" target="_blank" rel="external">Getting Started with Cron Jobs on OpenShift</a></p>
+</blockquote>
+<hr>
+<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><p>Every OpenShift application comes with a git repository. Git is the primary way of transporting code from your machine to the platform. git contains the application source code. It is simply named after the application. You do not usually need to care about this directory.</p>
+<hr>
+<h2 id="gear-registry"><a href="#gear-registry" class="headerlink" title="gear-registry"></a>gear-registry</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./</div><div class="line">├── gear-registry.json</div><div class="line">├── gear-registry.json.bak</div><div class="line">└── gear-registry.lock</div></pre></td></tr></table></figure>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/Haskell-Lesson-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -665,7 +800,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -678,7 +813,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
