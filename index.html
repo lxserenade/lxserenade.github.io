@@ -92,7 +92,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Li Xia&#39;s Site">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://li-xia.com/index.html">
 <meta property="og:site_name" content="Li Xia&#39;s Site">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Li Xia&#39;s Site">
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://li-xia.com/"/>
 
 
 
@@ -250,7 +250,129 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/OpenShift-directory/">
+    <link itemprop="mainEntityOfPage" href="http://li-xia.com/2017/06/01/word2vec-of-Dota2-team/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xia Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Li Xia's Site">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/01/word2vec-of-Dota2-team/" itemprop="url">word2vec of Dota2 team</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-01T13:32:32+08:00">
+                2017-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#</p>
+<blockquote>
+<p><a href="http://federicov.github.io/word-embeddings-and-dota2.html" target="_blank" rel="external">see this post</a><br>Refer to wikipedia, <a href="https://en.wikipedia.org/wiki/Word2vec" target="_blank" rel="external">word2vec</a> is a group of related models that are used to produce word embeddings.</p>
+</blockquote>
+<p>If we treat one Dota2 match team as a ‘Dota2 sentence’, for example, ‘mirana skeleton_king lich riki sven’, and each hero name as a ‘word’, so we can use word2vec to model these ‘words’.</p>
+<p>Here I use this <a href="https://api.opendota.com/api/matches/" target="_blank" rel="external">Dota2 api</a> to fetch Dota2 match data(in this trial there are 40k+ matches, which means I have 80k+ sentences(5 words(heroes) -&gt; 1 sentence)).</p>
+<p>After that, I use gensim library to do the ‘word2vec’.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">from</span> gensim.models <span class="keyword">import</span> Word2Vec</div><div class="line"><span class="keyword">from</span> gensim.models.word2vec <span class="keyword">import</span> Word2Vec, LineSentence</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(file)</span>:</span></div><div class="line">    sentences = LineSentence(file)</div><div class="line">    model = Word2Vec(sentences,size=<span class="number">100</span>,window=<span class="number">5</span>,min_count=<span class="number">0</span>)</div><div class="line">    model.save(<span class="string">'./result/matchTeamEmbeding'</span>)</div><div class="line">    <span class="keyword">return</span> model</div></pre></td></tr></table></figure>
+<p>Then, visualize it</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p><img src="/2017/06/01/word2vec-of-Dota2-team/Figure_1.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://li-xia.com/2017/05/18/OpenShift-directory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xia Li">
@@ -385,7 +507,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/Haskell-Lesson-1/">
+    <link itemprop="mainEntityOfPage" href="http://li-xia.com/2017/05/10/Haskell-Lesson-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xia Li">
@@ -515,7 +637,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/05/Learning Haskell/">
+    <link itemprop="mainEntityOfPage" href="http://li-xia.com/2017/05/05/Learning Haskell/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xia Li">
@@ -644,7 +766,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/05/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://li-xia.com/2017/05/05/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xia Li">
@@ -800,7 +922,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
