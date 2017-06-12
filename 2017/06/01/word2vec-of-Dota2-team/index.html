@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="#  see this postRefer to wikipedia, word2vec is a group of related models that are used to produce word embeddings.  If we treat one Dota2 match team as a ‘Dota2 sentence’, for example, ‘mirana skelet">
+<meta name="description" content="see this post &amp;gt;Refer to wikipedia, word2vec is a group of related models that are used to produce word embeddings. If we treat one Dota2 match team as a ‘Dota2 sentence’, for example, ‘mirana skele">
 <meta property="og:type" content="article">
 <meta property="og:title" content="word2vec of Dota2 team">
 <meta property="og:url" content="http://li-xia.com/2017/06/01/word2vec-of-Dota2-team/index.html">
 <meta property="og:site_name" content="Li Xia&#39;s Site">
-<meta property="og:description" content="#  see this postRefer to wikipedia, word2vec is a group of related models that are used to produce word embeddings.  If we treat one Dota2 match team as a ‘Dota2 sentence’, for example, ‘mirana skelet">
+<meta property="og:description" content="see this post &amp;gt;Refer to wikipedia, word2vec is a group of related models that are used to produce word embeddings. If we treat one Dota2 match team as a ‘Dota2 sentence’, for example, ‘mirana skele">
 <meta property="og:image" content="http://li-xia.com/2017/06/01/word2vec-of-Dota2-team/Figure_1.png">
-<meta property="og:updated_time" content="2017-06-01T10:22:52.000Z">
+<meta property="og:updated_time" content="2017-06-12T08:42:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="word2vec of Dota2 team">
-<meta name="twitter:description" content="#  see this postRefer to wikipedia, word2vec is a group of related models that are used to produce word embeddings.  If we treat one Dota2 match team as a ‘Dota2 sentence’, for example, ‘mirana skelet">
+<meta name="twitter:description" content="see this post &amp;gt;Refer to wikipedia, word2vec is a group of related models that are used to produce word embeddings. If we treat one Dota2 match team as a ‘Dota2 sentence’, for example, ‘mirana skele">
 <meta name="twitter:image" content="http://li-xia.com/2017/06/01/word2vec-of-Dota2-team/Figure_1.png">
 
 
@@ -318,17 +318,16 @@
       
 
       
-        <p>#</p>
-<blockquote>
-<p><a href="http://federicov.github.io/word-embeddings-and-dota2.html" target="_blank" rel="external">see this post</a><br>Refer to wikipedia, <a href="https://en.wikipedia.org/wiki/Word2vec" target="_blank" rel="external">word2vec</a> is a group of related models that are used to produce word embeddings.</p>
-</blockquote>
+        <p><a href="http://federicov.github.io/word-embeddings-and-dota2.html" target="_blank" rel="external">see this post</a></p>
+<p>&gt;<br>Refer to wikipedia, <a href="https://en.wikipedia.org/wiki/Word2vec" target="_blank" rel="external">word2vec</a> is a group of related models that are used to produce word embeddings.</p>
 <p>If we treat one Dota2 match team as a ‘Dota2 sentence’, for example, ‘mirana skeleton_king lich riki sven’, and each hero name as a ‘word’, so we can use word2vec to model these ‘words’.</p>
 <p>Here I use this <a href="https://api.opendota.com/api/matches/" target="_blank" rel="external">Dota2 api</a> to fetch Dota2 match data(in this trial there are 40k+ matches, which means I have 80k+ sentences(5 words(heroes) -&gt; 1 sentence)).</p>
 <p>After that, I use gensim library to do the ‘word2vec’.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">from</span> gensim.models <span class="keyword">import</span> Word2Vec</div><div class="line"><span class="keyword">from</span> gensim.models.word2vec <span class="keyword">import</span> Word2Vec, LineSentence</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(file)</span>:</span></div><div class="line">    sentences = LineSentence(file)</div><div class="line">    model = Word2Vec(sentences,size=<span class="number">100</span>,window=<span class="number">5</span>,min_count=<span class="number">0</span>)</div><div class="line">    model.save(<span class="string">'./result/matchTeamEmbeding'</span>)</div><div class="line">    <span class="keyword">return</span> model</div></pre></td></tr></table></figure>
 <p>Then, visualize it</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<p><img src="/2017/06/01/word2vec-of-Dota2-team/Figure_1.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">visualizeWV</span><span class="params">(embeddings_file)</span>:</span></div><div class="line">    hero_roles = loadHeroroles()</div><div class="line">    model = Word2Vec.load(embeddings_file)</div><div class="line">    word_vectors = model.wv </div><div class="line">    vocabulary = word_vectors.vocab.keys()</div><div class="line">    X = model[model.wv.vocab]</div><div class="line"></div><div class="line">    tsne = TSNE(n_components=<span class="number">2</span>,init=<span class="string">'pca'</span>, random_state=<span class="number">0</span>)</div><div class="line">    X_tsne = tsne.fit_transform(X)</div><div class="line">    colors = []</div><div class="line">    group = [<span class="string">'Carry'</span>,<span class="string">'Support'</span>,<span class="string">'Other'</span>]</div><div class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> vocabulary:</div><div class="line">        <span class="keyword">if</span> hero_roles[v][<span class="number">0</span>]==<span class="string">'Carry'</span>:</div><div class="line">            colors.append(<span class="string">'red'</span>)</div><div class="line">        <span class="keyword">elif</span> hero_roles[v][<span class="number">0</span>]==<span class="string">'Support'</span>:</div><div class="line">            colors.append(<span class="string">'green'</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            colors.append(<span class="string">'blue'</span>)</div><div class="line"></div><div class="line">    plt.scatter(X_tsne[:, <span class="number">0</span>], X_tsne[:, <span class="number">1</span>],color = colors)</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="keyword">for</span> label, x, y <span class="keyword">in</span> zip(vocabulary, X_tsne[:, <span class="number">0</span>], X_tsne[:, <span class="number">1</span>]):</div><div class="line">        plt.annotate(HeroAbbreDict[label], xy=(x, y), xytext=(<span class="number">-3</span>, <span class="number">-2</span>), textcoords=<span class="string">'offset points'</span>)</div><div class="line"></div><div class="line">    plt.show()</div></pre></td></tr></table></figure>
+<p>Here is result:<br><img src="/2017/06/01/word2vec-of-Dota2-team/Figure_1.png" alt=""></p>
+<p>red - Carry<br>green - Support<br>blue - Other<br>(for reference only)</p>
 
       
     </div>
