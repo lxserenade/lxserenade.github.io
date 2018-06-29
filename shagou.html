@@ -90,7 +90,8 @@ quizdom.innerHTML=''
 for(i=0;i<pickedyorn.length;i++){
     quizdom.innerHTML+='<div class="col-md-12 col-xs-12 card bg-info quizlib-question">'+
         '<div class="quizlib-question-title">'+
-        pickedyorn[i]['题干']+
+          '('+(1+i)+') '+
+         pickedyorn[i]['题干']+
         '</div>'+
            ' <div class="quizlib-question-answers">'+
                 '<ul>'+
@@ -109,7 +110,8 @@ for(i=0;i<pickedyorn.length;i++){
 for(i=0;i<pickedsingleq.length;i++){
     quizdom.innerHTML+='<div class="col-md-12  col-xs-12 card bg-success quizlib-question">'+
         '<div class="quizlib-question-title">'+
-        pickedsingleq[i]['题干']+
+         '('+(31+i)+') '+
+         pickedsingleq[i]['题干']+
         '</div>'+
            ' <div class="quizlib-question-answers">'+
                 '<ul>'+
@@ -136,6 +138,7 @@ for(i=0;i<pickedsingleq.length;i++){
 for(i=0;i<pickedmq.length;i++){
     quizdom.innerHTML+='<div class="col-md-12  col-xs-12 card bg-primary quizlib-question">'+
         '<div class="quizlib-question-title">'+
+        '('+(91+i)+') '+
         pickedmq[i]['题干']+
         '</div>'+
            ' <div class="quizlib-question-answers">'+
