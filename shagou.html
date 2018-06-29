@@ -31,10 +31,8 @@
 
         
     <div id="quiz-result" class="card">
-            你考了 - <span id="quiz-score"></span>分</span><br/>
-        </div>
+            你考了  <span id="quiz-score"></span>分</span><br/>
     </div>
-
 
     </body>
 </html>
@@ -90,7 +88,7 @@ var quizdom = document.getElementById("quiz-1");
 quizdom.innerHTML=''
 //y or n
 for(i=0;i<pickedyorn.length;i++){
-    quizdom.innerHTML+='<div class="col-md-12 col-xs-12 card quizlib-question">'+
+    quizdom.innerHTML+='<div class="col-md-12 col-xs-12 card bg-info quizlib-question">'+
         '<div class="quizlib-question-title">'+
         pickedyorn[i]['题干']+
         '</div>'+
@@ -109,7 +107,7 @@ for(i=0;i<pickedyorn.length;i++){
 
 //single
 for(i=0;i<pickedsingleq.length;i++){
-    quizdom.innerHTML+='<div class="col-md-12  col-xs-12 card quizlib-question">'+
+    quizdom.innerHTML+='<div class="col-md-12  col-xs-12 card bg-success quizlib-question">'+
         '<div class="quizlib-question-title">'+
         pickedsingleq[i]['题干']+
         '</div>'+
@@ -136,7 +134,7 @@ for(i=0;i<pickedsingleq.length;i++){
 
 //m
 for(i=0;i<pickedmq.length;i++){
-    quizdom.innerHTML+='<div class="col-md-12  col-xs-12 card quizlib-question">'+
+    quizdom.innerHTML+='<div class="col-md-12  col-xs-12 card bg-primary quizlib-question">'+
         '<div class="quizlib-question-title">'+
         pickedmq[i]['题干']+
         '</div>'+
