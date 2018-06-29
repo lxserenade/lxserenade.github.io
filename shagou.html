@@ -6,9 +6,9 @@
         <meta charset='utf-8'>
         <script type="text/javascript" src="https://alpsquid.github.io/quizlib/javascripts/quizlib.1.0.1.min.js"></script>
         <!-- Dev: <script type="text/javascript" src="../../src/quizlib.js"></script>-->
-        <script type="text/javascript" src="scripts/main.js"></script>
         <link rel="stylesheet" type="text/css" href="https://alpsquid.github.io/quizlib/stylesheets/stylesheet.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://alpsquid.github.io/quizlib/stylesheets/github.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://alpsquid.github.io/quizlib/stylesheets/quizlib.min.css" media="screen">
         <!-- Dev: <link rel="stylesheet" type="text/css" href="../../src/quizlib.css" media="screen">-->
         
@@ -20,12 +20,12 @@
         <!-- For this multi quiz, we'll use the same result element and move it to active quiz when the answer button is pressed. -->
     
         <!-- Quiz 1 -->
-        <div id="quiz-1">
+        <div class="row" id="quiz-1">
         
         </div>
 
         
-    <div id="quiz-result" class="card">
+    <div id="quiz-result" class="card col-xs-12  col-md-6">
             你考了 - <span id="quiz-score"></span>分</span><br/>
         </div>
 
@@ -57,9 +57,16 @@ function getRandom(arr, n) {
     return result;
 }
 
+
+
+
 var pickedmq = getRandom(multiq,10)
 var pickedyorn = getRandom(yorn,30)
 var pickedsingleq = getRandom(singleq,50)
+
+console.log(pickedyorn)
+console.log(pickedmq)
+console.log(pickedsingleq)
 
 var mqa = pickedmq.map(a => a['答案'].toUpperCase().split(''));
 var yna = pickedyorn.map(a => a['答案'].toUpperCase());
@@ -74,10 +81,10 @@ ans = ans.concat(mqa)
 //create questions
 
 var quizdom = document.getElementById("quiz-1");
-
+quizdom.innerHTML=''
 //y or n
 for(i=0;i<pickedyorn.length;i++){
-    quizdom.innerHTML='<div class="card quizlib-question">'+
+    quizdom.innerHTML+='<div class="card quizlib-question">'+
         '<div class="quizlib-question-title">'+
         pickedyorn[i]['题干']+
         '</div>'+
