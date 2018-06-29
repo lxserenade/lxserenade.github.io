@@ -15,6 +15,10 @@
         <title>烂东西</title>
     </head>
 
+    <style>
+        * {font-size: 30px;}
+</style>
+
     <body>
         <!-- Quiz Results -->
         <!-- For this multi quiz, we'll use the same result element and move it to active quiz when the answer button is pressed. -->
@@ -86,7 +90,7 @@ var quizdom = document.getElementById("quiz-1");
 quizdom.innerHTML=''
 //y or n
 for(i=0;i<pickedyorn.length;i++){
-    quizdom.innerHTML+='<div class="col-md-6 col-xs-12 card quizlib-question">'+
+    quizdom.innerHTML+='<div class="col-md-12 col-xs-12 card quizlib-question">'+
         '<div class="quizlib-question-title">'+
         pickedyorn[i]['题干']+
         '</div>'+
@@ -105,7 +109,7 @@ for(i=0;i<pickedyorn.length;i++){
 
 //single
 for(i=0;i<pickedsingleq.length;i++){
-    quizdom.innerHTML+='<div class="col-md-6  col-xs-12 card quizlib-question">'+
+    quizdom.innerHTML+='<div class="col-md-12  col-xs-12 card quizlib-question">'+
         '<div class="quizlib-question-title">'+
         pickedsingleq[i]['题干']+
         '</div>'+
@@ -132,7 +136,7 @@ for(i=0;i<pickedsingleq.length;i++){
 
 //m
 for(i=0;i<pickedmq.length;i++){
-    quizdom.innerHTML+='<div class="col-md-6  col-xs-12 card quizlib-question">'+
+    quizdom.innerHTML+='<div class="col-md-12  col-xs-12 card quizlib-question">'+
         '<div class="quizlib-question-title">'+
         pickedmq[i]['题干']+
         '</div>'+
