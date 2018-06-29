@@ -57,9 +57,9 @@ function getRandom(arr, n) {
     return result;
 }
 
-var pickedmq = getRandom(multiq,2)
-var pickedyorn = getRandom(yorn,1)
-var pickedsingleq = getRandom(singleq,1)
+var pickedmq = getRandom(multiq,10)
+var pickedyorn = getRandom(yorn,30)
+var pickedsingleq = getRandom(singleq,50)
 
 var mqa = pickedmq.map(a => a['答案'].toUpperCase().split(''));
 var yna = pickedyorn.map(a => a['答案'].toUpperCase());
