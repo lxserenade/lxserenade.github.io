@@ -200,10 +200,10 @@ function showResults(quizID) {
         document.getElementById('quiz-score').innerHTML = activeQuiz.result.score.toString();
 
         // Change background colour of results div according to score percent
-        if (quizScorePercent >= 75) quizResultElement.style.backgroundColor = '#4caf50';
-        else if (quizScorePercent >= 50) quizResultElement.style.backgroundColor = '#ffc107';
-        else if (quizScorePercent >= 25) quizResultElement.style.backgroundColor = '#ff9800';
-        else if (quizScorePercent >= 0) quizResultElement.style.backgroundColor = '#f44336';
+        if (activeQuiz.result.score >= 75) quizResultElement.style.backgroundColor = '#4caf50';
+        else if (activeQuiz.result.score >= 50) quizResultElement.style.backgroundColor = '#ffc107';
+        else if (activeQuiz.result.score >= 25) quizResultElement.style.backgroundColor = '#ff9800';
+        else if (activeQuiz.result.score >= 0) quizResultElement.style.backgroundColor = '#f44336';
         
         // Highlight questions according to whether they were correctly answered. The callback allows us to highlight/show the correct answer
         activeQuiz.highlightResults(handleAnswers);
