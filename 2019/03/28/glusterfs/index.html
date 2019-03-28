@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="install glusterfs in each node1234add-apt-repository ppa:gluster/glusterfs-3.10apt-get updateapt-get install glusterfs-serveriptables -I INPUT -p all -s &amp;lt;ip-address&amp;gt; -j ACCEPT //ip address of ot">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-28T11:58:13.347Z">
+<meta property="og:updated_time" content="2019-03-28T11:58:47.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install glusterfs">
 <meta name="twitter:description" content="install glusterfs in each node1234add-apt-repository ppa:gluster/glusterfs-3.10apt-get updateapt-get install glusterfs-serveriptables -I INPUT -p all -s &amp;lt;ip-address&amp;gt; -j ACCEPT //ip address of ot">
@@ -303,7 +303,7 @@
 <h2 id="peer-each-other"><a href="#peer-each-other" class="headerlink" title="peer each other"></a>peer each other</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gluster peer probe node1 //on node2</span><br><span class="line">gluster peer probe node2 //on node1</span><br></pre></td></tr></table></figure>
 <h2 id="create-volume"><a href="#create-volume" class="headerlink" title="create volume"></a>create volume</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gluster volume create gv0 replica2 2 node1:/data/gv0 node2:/data/gv0</span><br><span class="line">gluster volume start gv0</span><br></pre></td></tr></table></figure>
 <h2 id="some-useful-commands"><a href="#some-useful-commands" class="headerlink" title="some useful commands"></a>some useful commands</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gluster peer status</span><br><span class="line">gluster volume info</span><br></pre></td></tr></table></figure>
-
+<h2 id="install-gfs-client"><a href="#install-gfs-client" class="headerlink" title="install gfs client"></a>install gfs client</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install glusterfs-client //glusterfs-client was installed when installing glusterfs-server on server node</span><br><span class="line">mount -t glusterfs node1:/gv0 /mnt</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -467,7 +467,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#install-glusterfs-in-each-node"><span class="nav-number">1.</span> <span class="nav-text">install glusterfs in each node</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#peer-each-other"><span class="nav-number">2.</span> <span class="nav-text">peer each other</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#create-volume"><span class="nav-number">3.</span> <span class="nav-text">create volume</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some-useful-commands"><span class="nav-number">4.</span> <span class="nav-text">some useful commands</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#install-glusterfs-in-each-node"><span class="nav-number">1.</span> <span class="nav-text">install glusterfs in each node</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#peer-each-other"><span class="nav-number">2.</span> <span class="nav-text">peer each other</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#create-volume"><span class="nav-number">3.</span> <span class="nav-text">create volume</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some-useful-commands"><span class="nav-number">4.</span> <span class="nav-text">some useful commands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-gfs-client"><span class="nav-number">5.</span> <span class="nav-text">install gfs client</span></a></li></ol></div>
             
 
           </div>
