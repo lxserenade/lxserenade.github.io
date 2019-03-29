@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="k8s, redis-ha,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://li-xia.com/index.html">
+<meta name="description" content="Prerequisitecreate PV Here use Glusterfs as volume endponit  1234567891011121314apiVersion: v1kind: PersistentVolumemetadata:  name: redis-ha-0spec:      capacity:           storage: 10Gi     accessMo">
+<meta name="keywords" content="k8s, redis-ha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="deploy redis-ha in k8s">
+<meta property="og:url" content="https://li-xia.com/2019/03/29/redis-sentinel/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Prerequisitecreate PV Here use Glusterfs as volume endponit  1234567891011121314apiVersion: v1kind: PersistentVolumemetadata:  name: redis-ha-0spec:      capacity:           storage: 10Gi     accessMo">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-29T06:51:17.670Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="deploy redis-ha in k8s">
+<meta name="twitter:description" content="Prerequisitecreate PV Here use Glusterfs as volume endponit  1234567891011121314apiVersion: v1kind: PersistentVolumemetadata:  name: redis-ha-0spec:      capacity:           storage: 10Gi     accessMo">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://li-xia.com/">
+  <link rel="canonical" href="https://li-xia.com/2019/03/29/redis-sentinel/">
 
 
 
 
 
-  <title>Hexo</title>
+  <title>deploy redis-ha in k8s | Hexo</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +218,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/29/redis-sentinel/" itemprop="url">deploy redis-ha in k8s</a></h1>
+          <h1 class="post-title" itemprop="name headline">deploy redis-ha in k8s</h1>
         
 
         <div class="post-meta">
@@ -320,17 +322,13 @@
       
 
       
-        
-          
-            <h2 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h2><h3 id="create-PV"><a href="#create-PV" class="headerlink" title="create PV"></a>create PV</h3><blockquote>
+        <h2 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h2><h3 id="create-PV"><a href="#create-PV" class="headerlink" title="create PV"></a>create PV</h3><blockquote>
 <p>Here use Glusterfs as volume endponit</p>
 </blockquote>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">PersistentVolume</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">redis-ha-0</span></span><br><span class="line"><span class="attr">spec:</span>    </span><br><span class="line"><span class="attr">  capacity:</span>       </span><br><span class="line"><span class="attr">    storage:</span> <span class="number">10</span><span class="string">Gi</span>   </span><br><span class="line"><span class="attr">  accessModes:</span>    </span><br><span class="line"><span class="bullet">    -</span> <span class="string">ReadWriteOnce</span>  </span><br><span class="line"><span class="attr">  glusterfs:</span></span><br><span class="line"><span class="attr">    endpoints:</span> <span class="string">'glusterfs-cluster'</span></span><br><span class="line"><span class="attr">    path:</span> <span class="string">'redis-ha-0'</span>   </span><br><span class="line"><span class="attr">    readOnly:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">  persistentVolumeReclaimPolicy:</span> <span class="string">Recycle</span></span><br></pre></td></tr></table></figure>
 <h3 id="configmaps"><a href="#configmaps" class="headerlink" title="configmaps"></a>configmaps</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">ConfigMap</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">redis-ha-configmap</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">cloudai-falcon</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="string">init.sh:</span> <span class="string">"HOSTNAME=\"$(hostname)\"\nINDEX=\"$&#123;HOSTNAME##*-&#125;\"\nMASTER=\"$(redis-cli</span></span><br><span class="line"><span class="string">    -h redis-ha -p 26379 sentinel get-master-addr-by-name mymaster</span></span><br><span class="line"><span class="string">    | grep -E '[0-9]&#123;1,3&#125;\\.[0-9]&#123;1,3&#125;\\.[0-9]&#123;1,3&#125;\\.[0-9]&#123;1,3&#125;')\"\nMASTER_GROUP=\"mymaster\"\nQUORUM=\"2\"\nREDIS_CONF=/data/conf/redis.conf\nREDIS_PORT=6379\nSENTINEL_CONF=/data/conf/sentinel.conf\nSENTINEL_PORT=26379\nSERVICE=redis-ha\nset</span></span><br><span class="line"><span class="string">    -eu\n\nsentinel_update() &#123;\n    echo \"Updating sentinel config\"\n    eval MY_SENTINEL_ID=\"\\$&#123;SENTINEL_ID_$INDEX&#125;\"\n</span></span><br><span class="line"><span class="string">    \   sed -i \"1s/^/sentinel myid $MY_SENTINEL_ID\\\\n/\" \"$SENTINEL_CONF\"\n    sed</span></span><br><span class="line"><span class="string">    -i \"2s/^/sentinel monitor $MASTER_GROUP $1 $REDIS_PORT $QUORUM \\\\n/\" \"$SENTINEL_CONF\"\n</span></span><br><span class="line"><span class="string">    \   echo \"sentinel announce-ip $ANNOUNCE_IP\" &gt;&gt; $SENTINEL_CONF\n  echo \"\" &gt;&gt; $SENTINEL_CONF\n  echo \"sentinel</span></span><br><span class="line"><span class="string">    announce-port $SENTINEL_PORT\" &gt;&gt; $SENTINEL_CONF\n&#125;\n\nredis_update() &#123;\n    echo</span></span><br><span class="line"><span class="string">    \"Updating redis config\"\n    echo \"slaveof $1 $REDIS_PORT\" &gt;&gt; \"$REDIS_CONF\"\n</span></span><br><span class="line"><span class="string">    \   echo \"slave-announce-ip $ANNOUNCE_IP\" &gt;&gt; $REDIS_CONF\n    echo \"slave-announce-port</span></span><br><span class="line"><span class="string">    $REDIS_PORT\" &gt;&gt; $REDIS_CONF\n&#125;\n\ncopy_config() &#123;\n    cp /readonly-config/redis.conf</span></span><br><span class="line"><span class="string">    \"$REDIS_CONF\"\n    cp /readonly-config/sentinel.conf \"$SENTINEL_CONF\"\n&#125;\n\nsetup_defaults()</span></span><br><span class="line"><span class="string">    &#123;\n    echo \"Setting up defaults\"\n    if [ \"$INDEX\" = \"0\" ]; then\n        echo</span></span><br><span class="line"><span class="string">    \"Setting this pod as the default master\"\n        sed -i \"s/^.*slaveof.*//\"</span></span><br><span class="line"><span class="string">    \"$REDIS_CONF\"\n        sentinel_update \"$ANNOUNCE_IP\"\n    else\n        DEFAULT_MASTER=\"$(getent</span></span><br><span class="line"><span class="string">    hosts \"$SERVICE-announce-0\" | awk '&#123; print $1 &#125;')\"\n        if [ -z \"$DEFAULT_MASTER\"</span></span><br><span class="line"><span class="string">    ]; then\n            echo \"Unable to resolve host\"\n            exit 1\n        fi\n</span></span><br><span class="line"><span class="string">    \       echo \"Setting default slave config..\"\n        redis_update \"$DEFAULT_MASTER\"\n</span></span><br><span class="line"><span class="string">    \       sentinel_update \"$DEFAULT_MASTER\"\n    fi\n&#125;\n\nfind_master() &#123;\n    echo</span></span><br><span class="line"><span class="string">    \"Attempting to find master\"\n    if [ \"$(redis-cli -h \"$MASTER\" ping)\" !=</span></span><br><span class="line"><span class="string">    \"PONG\" ]; then\n       echo \"Can't ping master, attempting to force failover\"\n</span></span><br><span class="line"><span class="string">    \      if redis-cli -h \"$SERVICE\" -p \"$SENTINEL_PORT\" sentinel failover \"$MASTER_GROUP\"</span></span><br><span class="line"><span class="string">    | grep -q 'NOGOODSLAVE' ; then \n           setup_defaults\n           return</span></span><br><span class="line"><span class="string">    0\n       fi\n       sleep 10\n       MASTER=\"$(redis-cli -h $SERVICE -p $SENTINEL_PORT</span></span><br><span class="line"><span class="string">    sentinel get-master-addr-by-name $MASTER_GROUP | grep -E '[0-9]&#123;1,3&#125;\\.[0-9]&#123;1,3&#125;\\.[0-9]&#123;1,3&#125;\\.[0-9]&#123;1,3&#125;')\"\n</span></span><br><span class="line"><span class="string">    \      if [ \"$MASTER\" ]; then\n           sentinel_update \"$MASTER\"\n           redis_update</span></span><br><span class="line"><span class="string">    \"$MASTER\"\n       else\n          echo \"Could not failover, exiting...\"\n</span></span><br><span class="line"><span class="string">    \         exit 1\n       fi\n    else\n        echo \"Found reachable master,</span></span><br><span class="line"><span class="string">    updating config\"\n        sentinel_update \"$MASTER\"\n        redis_update \"$MASTER\"\n</span></span><br><span class="line"><span class="string">    \   fi\n&#125;\n\nmkdir -p /data/conf/\n\necho \"Initializing config..\"\ncopy_config\n\nANNOUNCE_IP=$(getent</span></span><br><span class="line"><span class="string">    hosts \"$SERVICE-announce-$INDEX\" | awk '&#123; print $1 &#125;')\nif [ -z \"$ANNOUNCE_IP\"</span></span><br><span class="line"><span class="string">    ]; then\n    \"Could not resolve the announce ip for this pod\"\n    exit 1\nelif</span></span><br><span class="line"><span class="string">    [ \"$MASTER\" ]; then\n    find_master\nelse\n    setup_defaults\nfi\n\nif [ \"$&#123;AUTH:-&#125;\"</span></span><br><span class="line"><span class="string">    ]; then\n    echo \"Setting auth values\"\n    sed -i \"s/replace-default-auth/$AUTH/\"</span></span><br><span class="line"><span class="string">    \"$REDIS_CONF\" \"$SENTINEL_CONF\"\nfi\n\necho \"Ready...\"\n"</span></span><br><span class="line">  <span class="string">redis.conf:</span> <span class="string">|</span></span><br><span class="line"><span class="string">    dir "/data"</span></span><br><span class="line"><span class="string">    maxmemory 0</span></span><br><span class="line"><span class="string">    maxmemory-policy volatile-lru</span></span><br><span class="line"><span class="string">    min-slaves-max-lag 5</span></span><br><span class="line"><span class="string">    min-slaves-to-write 1</span></span><br><span class="line"><span class="string">    rdbchecksum yes</span></span><br><span class="line"><span class="string">    rdbcompression yes</span></span><br><span class="line"><span class="string">    repl-diskless-sync yes</span></span><br><span class="line"><span class="string">    save 900 1</span></span><br><span class="line"><span class="string">  sentinel.conf: |</span></span><br><span class="line"><span class="string">    dir "/data"</span></span><br><span class="line"><span class="string">    sentinel down-after-milliseconds mymaster 10000</span></span><br><span class="line"><span class="string">    sentinel failover-timeout mymaster 180000</span></span><br><span class="line"><span class="string">    sentinel parallel-syncs mymaster 5 </span></span><br><span class="line"><span class="string">---</span></span><br><span class="line"><span class="string"></span><span class="attr">kind:</span> <span class="string">ConfigMap</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">redis-ha-probes</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">cloudai-falcon</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="string">check-quorum.sh:</span> <span class="string">|</span></span><br><span class="line"><span class="string">    #!/bin/sh</span></span><br><span class="line"><span class="string">    set -eu</span></span><br><span class="line"><span class="string">    MASTER_GROUP="mymaster"</span></span><br><span class="line"><span class="string">    SENTINEL_PORT=26379</span></span><br><span class="line"><span class="string">    REDIS_PORT=6379</span></span><br><span class="line"><span class="string">    NUM_SLAVES=$(redis-cli -p "$SENTINEL_PORT" sentinel master mymaster | awk '/num-slaves/&#123;getline; print&#125;')</span></span><br><span class="line"><span class="string">    MIN_SLAVES=1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    if [ "$1" = "$SENTINEL_PORT" ]; then</span></span><br><span class="line"><span class="string">        if redis-cli -p "$SENTINEL_PORT" sentinel ckquorum "$MASTER_GROUP" | grep -q NOQUORUM ; then</span></span><br><span class="line"><span class="string">            echo "ERROR: NOQUORUM. Sentinel quorum check failed, not enough sentinels found"</span></span><br><span class="line"><span class="string">            exit 1</span></span><br><span class="line"><span class="string">        fi</span></span><br><span class="line"><span class="string">    elif [ "$1" = "$REDIS_PORT" ]; then</span></span><br><span class="line"><span class="string">        if [ "$MIN_SLAVES" -gt "$NUM_SLAVES" ]; then</span></span><br><span class="line"><span class="string">            echo "Could not find enough replicating slaves. Needed $MIN_SLAVES but found $NUM_SLAVES"</span></span><br><span class="line"><span class="string">            exit 1</span></span><br><span class="line"><span class="string">        fi</span></span><br><span class="line"><span class="string">    fi</span></span><br><span class="line"><span class="string">    sh /probes/readiness.sh "$1"</span></span><br><span class="line"><span class="string">  readiness.sh: |</span></span><br><span class="line"><span class="string">    #!/bin/sh</span></span><br><span class="line"><span class="string">    set -eu</span></span><br><span class="line"><span class="string">    CHECK_SERVER="$(redis-cli -p "$1" ping)"</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    if [ "$CHECK_SERVER" != "PONG" ]; then</span></span><br><span class="line"><span class="string">        echo "Server check failed with: $CHECK_SERVER"</span></span><br><span class="line"><span class="string">        exit 1</span></span><br><span class="line"><span class="string">    fi</span></span><br></pre></td></tr></table></figure>
 <h3 id="k8s-services"><a href="#k8s-services" class="headerlink" title="k8s services"></a>k8s services</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">server</span></span><br><span class="line"><span class="attr">    protocol:</span> <span class="string">TCP</span></span><br><span class="line"><span class="attr">    port:</span> <span class="number">6379</span></span><br><span class="line"><span class="attr">    targetPort:</span> <span class="string">redis</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">sentinel</span></span><br><span class="line"><span class="attr">    protocol:</span> <span class="string">TCP</span></span><br><span class="line"><span class="attr">    port:</span> <span class="number">26379</span></span><br><span class="line"><span class="attr">    targetPort:</span> <span class="string">sentinel</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">  clusterIP:</span> <span class="string">None</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">ClusterIP</span></span><br><span class="line"><span class="attr">  sessionAffinity:</span> <span class="string">None</span></span><br><span class="line"><span class="attr">status:</span></span><br><span class="line"><span class="attr">  loadBalancer:</span> <span class="string">&#123;&#125;</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">redis-ha-announce-0</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">  annotations:</span></span><br><span class="line">    <span class="string">service.alpha.kubernetes.io/tolerate-unready-endpoints:</span> <span class="string">'true'</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">server</span></span><br><span class="line"><span class="attr">    protocol:</span> <span class="string">TCP</span></span><br><span class="line"><span class="attr">    port:</span> <span class="number">6379</span></span><br><span class="line"><span class="attr">    targetPort:</span> <span class="string">redis</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">sentinel</span></span><br><span class="line"><span class="attr">    protocol:</span> <span class="string">TCP</span></span><br><span class="line"><span class="attr">    port:</span> <span class="number">26379</span></span><br><span class="line"><span class="attr">    targetPort:</span> <span class="string">sentinel</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">redis-ha</span></span><br><span class="line">    <span class="string">statefulset.kubernetes.io/pod-name:</span> <span class="string">redis-ha-server-0</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">ClusterIP</span></span><br><span class="line"><span class="attr">  sessionAffinity:</span> <span class="string">None</span></span><br><span class="line"><span class="attr">  publishNotReadyAddresses:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <h2 id="create-redis-sentinel-statefulset"><a href="#create-redis-sentinel-statefulset" class="headerlink" title="create redis-sentinel statefulset"></a>create redis-sentinel statefulset</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">StatefulSet</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1beta2</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">redis-ha-server</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  replicas:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    matchLabels:</span></span><br><span class="line"><span class="attr">      app:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">      annotations:</span></span><br><span class="line">        <span class="string">checksum/init-config:</span> <span class="number">9499280752</span><span class="string">dfec6118de09c29cfe19733bccf662c2b333e679fc8e9d33ac7d70</span></span><br><span class="line">        <span class="string">checksum/probe-config:</span> <span class="number">64</span><span class="string">d7c477215fc7d651e2f61a1103cdeb70914d30fe41f26a987826e851ffa94b</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      volumes:</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">config</span></span><br><span class="line"><span class="attr">        configMap:</span></span><br><span class="line"><span class="attr">          name:</span> <span class="string">redis-ha-configmap</span></span><br><span class="line"><span class="attr">          defaultMode:</span> <span class="number">420</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">probes</span></span><br><span class="line"><span class="attr">        configMap:</span></span><br><span class="line"><span class="attr">          name:</span> <span class="string">redis-ha-probes</span></span><br><span class="line"><span class="attr">          defaultMode:</span> <span class="number">420</span></span><br><span class="line"><span class="attr">      initContainers:</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">config-init</span></span><br><span class="line"><span class="attr">        image:</span> <span class="attr">redis:5.0.3-alpine</span></span><br><span class="line"><span class="attr">        command:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">sh</span></span><br><span class="line"><span class="attr">        args:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">"/readonly-config/init.sh"</span></span><br><span class="line"><span class="attr">        env:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">SENTINEL_ID_0</span></span><br><span class="line"><span class="attr">          value:</span> <span class="number">4</span><span class="string">af82310615f85fb4117ec5abda3c2a9d0348cc8</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">SENTINEL_ID_1</span></span><br><span class="line"><span class="attr">          value:</span> <span class="string">d967ad9696377bdba8d72effb9f7bc965beed26c</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">SENTINEL_ID_2</span></span><br><span class="line"><span class="attr">          value:</span> <span class="number">03e71</span><span class="string">c6528974fcad46145fa73234e9de39350d0</span></span><br><span class="line"><span class="attr">        resources:</span> <span class="string">&#123;&#125;</span></span><br><span class="line"><span class="attr">        volumeMounts:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">config</span></span><br><span class="line"><span class="attr">          readOnly:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">          mountPath:</span> <span class="string">"/readonly-config"</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">data</span></span><br><span class="line"><span class="attr">          mountPath:</span> <span class="string">"/data"</span></span><br><span class="line"><span class="attr">        terminationMessagePath:</span> <span class="string">"/dev/termination-log"</span></span><br><span class="line"><span class="attr">        terminationMessagePolicy:</span> <span class="string">File</span></span><br><span class="line"><span class="attr">        imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">redis</span></span><br><span class="line"><span class="attr">        image:</span> <span class="attr">redis:5.0.3-alpine</span></span><br><span class="line"><span class="attr">        command:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">redis-server</span></span><br><span class="line"><span class="attr">        args:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">"/data/conf/redis.conf"</span></span><br><span class="line"><span class="attr">        ports:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">redis</span></span><br><span class="line"><span class="attr">          containerPort:</span> <span class="number">6379</span></span><br><span class="line"><span class="attr">          protocol:</span> <span class="string">TCP</span></span><br><span class="line"><span class="attr">        resources:</span> <span class="string">&#123;&#125;</span></span><br><span class="line"><span class="attr">        volumeMounts:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">data</span></span><br><span class="line"><span class="attr">          mountPath:</span> <span class="string">"/data"</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">probes</span></span><br><span class="line"><span class="attr">          mountPath:</span> <span class="string">"/probes"</span></span><br><span class="line"><span class="attr">        livenessProbe:</span></span><br><span class="line"><span class="attr">          exec:</span></span><br><span class="line"><span class="attr">            command:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">sh</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"/probes/readiness.sh"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">'6379'</span></span><br><span class="line"><span class="attr">          initialDelaySeconds:</span> <span class="number">15</span></span><br><span class="line"><span class="attr">          timeoutSeconds:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">          periodSeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">          successThreshold:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">          failureThreshold:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">        readinessProbe:</span></span><br><span class="line"><span class="attr">          exec:</span></span><br><span class="line"><span class="attr">            command:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">sh</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"/probes/readiness.sh"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">'6379'</span></span><br><span class="line"><span class="attr">          initialDelaySeconds:</span> <span class="number">15</span></span><br><span class="line"><span class="attr">          timeoutSeconds:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">          periodSeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">          successThreshold:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">          failureThreshold:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">        terminationMessagePath:</span> <span class="string">"/dev/termination-log"</span></span><br><span class="line"><span class="attr">        terminationMessagePolicy:</span> <span class="string">File</span></span><br><span class="line"><span class="attr">        imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">sentinel</span></span><br><span class="line"><span class="attr">        image:</span> <span class="attr">redis:5.0.3-alpine</span></span><br><span class="line"><span class="attr">        command:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">redis-sentinel</span></span><br><span class="line"><span class="attr">        args:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">"/data/conf/sentinel.conf"</span></span><br><span class="line"><span class="attr">        ports:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">sentinel</span></span><br><span class="line"><span class="attr">          containerPort:</span> <span class="number">26379</span></span><br><span class="line"><span class="attr">          protocol:</span> <span class="string">TCP</span></span><br><span class="line"><span class="attr">        resources:</span> <span class="string">&#123;&#125;</span></span><br><span class="line"><span class="attr">        volumeMounts:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">data</span></span><br><span class="line"><span class="attr">          mountPath:</span> <span class="string">"/data"</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">probes</span></span><br><span class="line"><span class="attr">          mountPath:</span> <span class="string">"/probes"</span></span><br><span class="line"><span class="attr">        livenessProbe:</span></span><br><span class="line"><span class="attr">          exec:</span></span><br><span class="line"><span class="attr">            command:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">sh</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"/probes/readiness.sh"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">'26379'</span></span><br><span class="line"><span class="attr">          initialDelaySeconds:</span> <span class="number">15</span></span><br><span class="line"><span class="attr">          timeoutSeconds:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">          periodSeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">          successThreshold:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">          failureThreshold:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">        readinessProbe:</span></span><br><span class="line"><span class="attr">          exec:</span></span><br><span class="line"><span class="attr">            command:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">sh</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"/probes/readiness.sh"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">'26379'</span></span><br><span class="line"><span class="attr">          initialDelaySeconds:</span> <span class="number">15</span></span><br><span class="line"><span class="attr">          timeoutSeconds:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">          periodSeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">          successThreshold:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">          failureThreshold:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">        terminationMessagePath:</span> <span class="string">"/dev/termination-log"</span></span><br><span class="line"><span class="attr">        terminationMessagePolicy:</span> <span class="string">File</span></span><br><span class="line"><span class="attr">        imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line"><span class="attr">      restartPolicy:</span> <span class="string">Always</span></span><br><span class="line"><span class="attr">      terminationGracePeriodSeconds:</span> <span class="number">30</span></span><br><span class="line"><span class="attr">      dnsPolicy:</span> <span class="string">ClusterFirst</span></span><br><span class="line"><span class="attr">      securityContext:</span></span><br><span class="line"><span class="attr">        runAsUser:</span> <span class="number">1000</span></span><br><span class="line"><span class="attr">        runAsNonRoot:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">        fsGroup:</span> <span class="number">1000</span></span><br><span class="line"><span class="attr">      affinity:</span></span><br><span class="line"><span class="attr">        podAntiAffinity:</span></span><br><span class="line"><span class="attr">          requiredDuringSchedulingIgnoredDuringExecution:</span></span><br><span class="line"><span class="attr">          - labelSelector:</span></span><br><span class="line"><span class="attr">              matchLabels:</span></span><br><span class="line"><span class="attr">                app:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">            topologyKey:</span> <span class="string">kubernetes.io/hostname</span></span><br><span class="line"><span class="attr">          preferredDuringSchedulingIgnoredDuringExecution:</span></span><br><span class="line"><span class="attr">          - weight:</span> <span class="number">100</span></span><br><span class="line"><span class="attr">            podAffinityTerm:</span></span><br><span class="line"><span class="attr">              labelSelector:</span></span><br><span class="line"><span class="attr">                matchLabels:</span></span><br><span class="line"><span class="attr">                  app:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">              topologyKey:</span> <span class="string">failure-domain.beta.kubernetes.io/zone</span></span><br><span class="line"><span class="attr">      schedulerName:</span> <span class="string">default-scheduler</span></span><br><span class="line"><span class="attr">  volumeClaimTemplates:</span></span><br><span class="line"><span class="attr">  - metadata:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">data</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      accessModes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">ReadWriteOnce</span></span><br><span class="line"><span class="attr">      resources:</span></span><br><span class="line"><span class="attr">        requests:</span></span><br><span class="line"><span class="attr">          storage:</span> <span class="number">10</span><span class="string">Gi</span></span><br><span class="line"><span class="attr">  serviceName:</span> <span class="string">redis-ha</span></span><br><span class="line"><span class="attr">  podManagementPolicy:</span> <span class="string">OrderedReady</span></span><br><span class="line"><span class="attr">  updateStrategy:</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">RollingUpdate</span></span><br></pre></td></tr></table></figure>
-          
-        
       
     </div>
     
@@ -345,299 +343,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://li-xia.com/2019/03/28/glusterfs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xia Li">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/28/glusterfs/" itemprop="url">Install glusterfs</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-28T19:53:53+08:00">
-                2019-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/k8s-redis-ha/" rel="tag"># k8s, redis-ha</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="install-glusterfs-in-each-node"><a href="#install-glusterfs-in-each-node" class="headerlink" title="install glusterfs in each node"></a>install glusterfs in each node</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add-apt-repository ppa:gluster/glusterfs-3.10</span><br><span class="line">apt-get update</span><br><span class="line">apt-get install glusterfs-server</span><br><span class="line">iptables -I INPUT -p all -s &lt;ip-address&gt; -j ACCEPT //ip address of other nodes configure cluster</span><br></pre></td></tr></table></figure>
-<h2 id="peer-each-other"><a href="#peer-each-other" class="headerlink" title="peer each other"></a>peer each other</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gluster peer probe node1 //on node2</span><br><span class="line">gluster peer probe node2 //on node1</span><br></pre></td></tr></table></figure>
-<h2 id="create-volume"><a href="#create-volume" class="headerlink" title="create volume"></a>create volume</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gluster volume create gv0 replica2 2 node1:/data/gv0 node2:/data/gv0 force</span><br><span class="line">gluster volume start gv0</span><br></pre></td></tr></table></figure>
-<h2 id="some-useful-commands"><a href="#some-useful-commands" class="headerlink" title="some useful commands"></a>some useful commands</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">＃start glusterd</span><br><span class="line">/etc/init.d/glusterfs-server start</span><br><span class="line"></span><br><span class="line">gluster peer status</span><br><span class="line">gluster volume info</span><br></pre></td></tr></table></figure>
-<h2 id="install-gfs-client"><a href="#install-gfs-client" class="headerlink" title="install gfs client"></a>install gfs client</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install glusterfs-client //glusterfs-client was installed when installing glusterfs-server on server node</span><br><span class="line">mount -t glusterfs node1:/gv0 /mnt</span><br></pre></td></tr></table></figure>
-<h2 id="If-start-glusterd-failed"><a href="#If-start-glusterd-failed" class="headerlink" title="If start glusterd failed"></a>If start glusterd failed</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># edit config file /etc/glusterfs/glusterd.vol</span></span><br><span class="line">...</span><br><span class="line"><span class="comment">#change working-directory to /etc/glusterfs</span></span><br><span class="line">option working-directory /etc/glusterfs</span><br></pre></td></tr></table></figure>
-<h2 id="If-mount-failed"><a href="#If-mount-failed" class="headerlink" title="If mount  failed"></a>If mount  failed</h2><blockquote>
-<p>error message:”failed to fetch volume file”</p>
-</blockquote>
-<pre><code>after adding &quot;option rpc-auth-allow-insecure on&quot; to /etc/glusterfs/glusterd.vol and service restart it works fine now.
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://li-xia.com/2019/03/26/service-mesh/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xia Li">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/26/service-mesh/" itemprop="url">Service Mesh</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-26T20:23:03+08:00">
-                2019-03-26
-              </time>
+              <a href="/2019/03/28/glusterfs/" rel="next" title="Install glusterfs">
+                <i class="fa fa-chevron-left"></i> Install glusterfs
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/instruction/" itemprop="url" rel="index">
-                    <span itemprop="name">instruction</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="What-is-service-mesh"><a href="#What-is-service-mesh" class="headerlink" title="What is service mesh"></a>What is service mesh</h2><p>A service mesh is a configurable, low latency infrastructure layer designed to handle a high volume of network-based interprocess communication amoung application infrastructure services using APIs.</p>
-<h3 id="Software"><a href="#Software" class="headerlink" title="Software"></a>Software</h3><hr>
-<ul>
-<li>Consul</li>
-<li>Istio</li>
-<li>etcd </li>
-</ul>
-<h3 id="Key-feature"><a href="#Key-feature" class="headerlink" title="Key feature"></a>Key feature</h3><hr>
-<ul>
-<li>Service Discovery</li>
-<li>Health Checking</li>
-<li>KV Store</li>
-<li>Secure Service Communication</li>
-<li>Multi Datacenter</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -647,160 +382,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://li-xia.com/2019/03/26/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xia Li">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/26/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-26T20:10:55+08:00">
-                2019-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/instruction/" itemprop="url" rel="index">
-                    <span itemprop="name">instruction</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -808,6 +394,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -828,8 +418,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -889,6 +488,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Prerequisite"><span class="nav-number">1.</span> <span class="nav-text">Prerequisite</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#create-PV"><span class="nav-number">1.1.</span> <span class="nav-text">create PV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#configmaps"><span class="nav-number">1.2.</span> <span class="nav-text">configmaps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k8s-services"><span class="nav-number">1.3.</span> <span class="nav-text">k8s services</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#create-redis-sentinel-statefulset"><span class="nav-number">2.</span> <span class="nav-text">create redis-sentinel statefulset</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1022,6 +637,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
