@@ -229,6 +229,285 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-xia.com/2019/04/13/heketi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xia Li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/13/heketi/" itemprop="url">Setting up heketi to provision GFS</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-13T16:31:30+08:00">
+                2019-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://github.com/heketi/heketi" target="_blank" rel="noopener">heketi</a> is a <strong>RESTful based volume management framework for GlusterFS</strong></p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><ul>
+<li>At least one node with glusterd running</li>
+</ul>
+<h2 id="Install-heketi"><a href="#Install-heketi" class="headerlink" title="Install heketi"></a>Install heketi</h2><blockquote>
+<p>Download heketi from <a href="https://github.com/heketi/heketi/releases" target="_blank" rel="noopener">release page</a>, then you will get two executable: <strong>heketi</strong>, <strong>heketi-cli</strong>, and config file <strong>heketi.json</strong>. <strong>heketi</strong> is the restful api server, <strong>heketi-cli</strong> is the command line tool to call heketi api.</p>
+</blockquote>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p><strong>heketi.json</strong>:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"_port_comment"</span>: <span class="string">"Heketi Server Port Number"</span>,</span><br><span class="line">  <span class="attr">"port"</span>: <span class="string">"8080"</span>,</span><br><span class="line">  <span class="attr">"sudo"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"_enable_tls_comment"</span>: <span class="string">"Enable TLS in Heketi Server"</span>,</span><br><span class="line">  <span class="attr">"enable_tls"</span>: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">  <span class="attr">"_cert_file_comment"</span>: <span class="string">"Path to a valid certificate file"</span>,</span><br><span class="line">  <span class="attr">"cert_file"</span>: <span class="string">""</span>,</span><br><span class="line"></span><br><span class="line">  <span class="attr">"_key_file_comment"</span>: <span class="string">"Path to a valid private key file"</span>,</span><br><span class="line">  <span class="attr">"key_file"</span>: <span class="string">""</span>,</span><br><span class="line"></span><br><span class="line">  <span class="attr">"_use_auth"</span>: <span class="string">"Enable JWT authorization. Please enable for deployment"</span>,</span><br><span class="line">  <span class="attr">"use_auth"</span>: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">  <span class="attr">"_jwt"</span>: <span class="string">"Private keys for access"</span>,</span><br><span class="line">  <span class="attr">"jwt"</span>: &#123;</span><br><span class="line">    <span class="attr">"_admin"</span>: <span class="string">"Admin has access to all APIs"</span>,</span><br><span class="line">    <span class="attr">"admin"</span>: &#123;</span><br><span class="line">      <span class="attr">"key"</span>: <span class="string">"My Secret"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"_user"</span>: <span class="string">"User only has access to /volumes endpoint"</span>,</span><br><span class="line">    <span class="attr">"user"</span>: &#123;</span><br><span class="line">      <span class="attr">"key"</span>: <span class="string">"My Secret"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="attr">"_backup_db_to_kube_secret"</span>: <span class="string">"Backup the heketi database to a Kubernetes secret when running in Kubernetes. Default is off."</span>,</span><br><span class="line">  <span class="attr">"backup_db_to_kube_secret"</span>: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">  <span class="attr">"_glusterfs_comment"</span>: <span class="string">"GlusterFS Configuration"</span>,</span><br><span class="line">  <span class="attr">"glusterfs"</span>: &#123;</span><br><span class="line">    <span class="attr">"_executor_comment"</span>: [</span><br><span class="line">      <span class="string">"Execute plugin. Possible choices: mock, ssh"</span>,</span><br><span class="line">      <span class="string">"mock: This setting is used for testing and development."</span>,</span><br><span class="line">      <span class="string">"      It will not send commands to any node."</span>,</span><br><span class="line">      <span class="string">"ssh:  This setting will notify Heketi to ssh to the nodes."</span>,</span><br><span class="line">      <span class="string">"      It will need the values in sshexec to be configured."</span>,</span><br><span class="line">      <span class="string">"kubernetes: Communicate with GlusterFS containers over"</span>,</span><br><span class="line">      <span class="string">"            Kubernetes exec api."</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"executor"</span>: <span class="string">"ssh"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attr">"_sshexec_comment"</span>: <span class="string">"SSH username and private key file information"</span>,</span><br><span class="line">    <span class="attr">"sshexec"</span>: &#123;</span><br><span class="line">      <span class="attr">"keyfile"</span>: <span class="string">"/root/.ssh/id_rsa"</span>,</span><br><span class="line">      <span class="attr">"user"</span>: <span class="string">"root"</span>,</span><br><span class="line">      <span class="attr">"port"</span>: <span class="string">"22"</span>,</span><br><span class="line">      <span class="attr">"fstab"</span>: <span class="string">"/etc/fstab"</span>,</span><br><span class="line">      <span class="attr">"backup_lvm_metadata"</span>: <span class="literal">false</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="attr">"_kubeexec_comment"</span>: <span class="string">"Kubernetes configuration"</span>,</span><br><span class="line">    <span class="attr">"kubeexec"</span>: &#123;</span><br><span class="line">      <span class="attr">"host"</span>: <span class="string">"https://kubernetes.host:8443"</span>,</span><br><span class="line">      <span class="attr">"cert"</span>: <span class="string">"/path/to/crt.file"</span>,</span><br><span class="line">      <span class="attr">"insecure"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">"user"</span>: <span class="string">"kubernetes username"</span>,</span><br><span class="line">      <span class="attr">"password"</span>: <span class="string">"password for kubernetes user"</span>,</span><br><span class="line">      <span class="attr">"namespace"</span>: <span class="string">"OpenShift project or Kubernetes namespace"</span>,</span><br><span class="line">      <span class="attr">"fstab"</span>: <span class="string">"Optional: Specify fstab file on node.  Default is /etc/fstab"</span>,</span><br><span class="line">      <span class="attr">"backup_lvm_metadata"</span>: <span class="literal">false</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="attr">"_db_comment"</span>: <span class="string">"Database file name"</span>,</span><br><span class="line">    <span class="attr">"db"</span>: <span class="string">"/var/lib/heketi/heketi.db"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attr">"_refresh_time_monitor_gluster_nodes"</span>: <span class="string">"Refresh time in seconds to monitor Gluster nodes"</span>,</span><br><span class="line">    <span class="attr">"refresh_time_monitor_gluster_nodes"</span>: <span class="number">120</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attr">"_start_time_monitor_gluster_nodes"</span>: <span class="string">"Start time in seconds to monitor Gluster nodes when the heketi comes up"</span>,</span><br><span class="line">    <span class="attr">"start_time_monitor_gluster_nodes"</span>: <span class="number">10</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attr">"_loglevel_comment"</span>: [</span><br><span class="line">      <span class="string">"Set log level. Choices are:"</span>,</span><br><span class="line">      <span class="string">"  none, critical, error, warning, info, debug"</span>,</span><br><span class="line">      <span class="string">"Default is warning"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"loglevel"</span>: <span class="string">"debug"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attr">"_auto_create_block_hosting_volume"</span>: <span class="string">"Creates Block Hosting volumes automatically if not found or exsisting volume exhausted"</span>,</span><br><span class="line">    <span class="attr">"auto_create_block_hosting_volume"</span>: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attr">"_block_hosting_volume_size"</span>: <span class="string">"New block hosting volume will be created in size mentioned, This is considered only if auto-create is enabled."</span>,</span><br><span class="line">    <span class="attr">"block_hosting_volume_size"</span>: <span class="number">500</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attr">"_block_hosting_volume_options"</span>: <span class="string">"New block hosting volume will be created with the following set of options. Removing the group gluster-block option is NOT recommended. Additional options can be added next to it separated by a comma."</span>,</span><br><span class="line">    <span class="attr">"block_hosting_volume_options"</span>: <span class="string">"group gluster-block"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>to use ssh mode:</p>
+<pre><code>&quot;executor&quot;: &quot;ssh&quot;
+&quot;sudo&quot;: true
+&quot;sshexec&quot;: {
+  &quot;keyfile&quot;: &quot;/root/.ssh/id_rsa&quot;,
+  &quot;user&quot;: &quot;root&quot;,
+  &quot;port&quot;: &quot;22&quot;,
+  &quot;fstab&quot;: &quot;/etc/fstab&quot;,
+  &quot;backup_lvm_metadata&quot;: false
+}
+</code></pre><p><strong>make sure node sshd can be login with root</strong></p>
+<p><strong>mkdir</strong> if dir not exists:</p>
+<p> “db”: “/var/lib/heketi/heketi.db”,</p>
+<h2 id="Run-heketi"><a href="#Run-heketi" class="headerlink" title="Run heketi"></a>Run heketi</h2><p>To run heketi(api server), simply:</p>
+<pre><code>heketi --config=heketi.json
+</code></pre><p>or use a <a href="https://hub.docker.com/r/heketi/heketi" target="_blank" rel="noopener">containerized</a> way:</p>
+<pre><code>$ mkdir -p heketi/config
+$ mkdir -p heketi/db
+$ cp heketi.json heketi/config
+$ cp myprivate_key heketi/config
+$ chmod 600 heketi/config/myprivate_key
+$ chown 1000:1000 -R heketi
+</code></pre><p>to run</p>
+<pre><code># docker run -d -p 8080:8080 \
+         -v $PWD/heketi/config:/etc/heketi \
+         -v $PWD/heketi/db:/var/lib/heketi \
+         heketi/heketi:dev
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Heketi v8.0.0</span><br><span class="line">[heketi] INFO 2019/04/13 16:58:39 Loaded ssh executor</span><br><span class="line">[heketi] INFO 2019/04/13 16:58:39 Block: Auto Create Block Hosting Volume set to true</span><br><span class="line">[heketi] INFO 2019/04/13 16:58:39 Block: New Block Hosting Volume size 500 GB</span><br><span class="line">[heketi] INFO 2019/04/13 16:58:39 Block: New Block Hosting Volume Options: group gluster-block</span><br><span class="line">[heketi] INFO 2019/04/13 16:58:39 GlusterFS Application Loaded</span><br><span class="line">[heketi] INFO 2019/04/13 16:58:39 Started Node Health Cache Monitor</span><br><span class="line">Listening on port 8080</span><br></pre></td></tr></table></figure>
+<h2 id="config-existing-gfs-cluster-to-heketi"><a href="#config-existing-gfs-cluster-to-heketi" class="headerlink" title="config existing gfs cluster to heketi"></a>config existing gfs cluster to heketi</h2><p>create a topology.json file describe your cluster topology:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"clusters"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"nodes"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"node"</span>: &#123;</span><br><span class="line">            <span class="attr">"hostnames"</span>: &#123;</span><br><span class="line">              <span class="attr">"manage"</span>: [<span class="string">"mynode"</span>],</span><br><span class="line">              <span class="attr">"storage"</span>: [<span class="string">"127.0.0.1"</span>]</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">"zone"</span>: <span class="number">1</span></span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="attr">"devices"</span>: [<span class="string">"/dev/sda"</span>]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>load with heketi-cli</p>
+<pre><code>heketi-cli topology load --json=./topology.json
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-xia.com/2019/04/01/create-helm-chart/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xia Li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/01/create-helm-chart/" itemprop="url">create-helm-chart</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-01T15:29:40+08:00">
+                2019-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Run-Helm-Create"><a href="#Run-Helm-Create" class="headerlink" title="Run Helm Create"></a>Run Helm Create</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /to/your/folder</span><br><span class="line">$ helm create endpoints <span class="comment"># endpoints is the name of your chart</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://li-xia.com/2019/03/29/redis-sentinel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -844,7 +1123,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
