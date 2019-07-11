@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Causal cluster###  HA cluster">
+<meta name="description" content="Causal clusterCore Node-　Core Servers’ main responsibility is to safeguard data via Raft protocol  once a majority of Core Servers in a cluster (N/2+1) have accepted the transaction, it is safe to ack">
 <meta name="keywords" content="neo4j, cluster">
 <meta property="og:type" content="article">
 <meta property="og:title" content="neo4j cluster">
 <meta property="og:url" content="https://li-xia.com/2019/07/11/neo4j-cluster/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Causal cluster###  HA cluster">
+<meta property="og:description" content="Causal clusterCore Node-　Core Servers’ main responsibility is to safeguard data via Raft protocol  once a majority of Core Servers in a cluster (N/2+1) have accepted the transaction, it is safe to ack">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-11T09:47:42.122Z">
+<meta property="og:updated_time" content="2019-07-11T09:52:35.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="neo4j cluster">
-<meta name="twitter:description" content="Causal cluster###  HA cluster">
+<meta name="twitter:description" content="Causal clusterCore Node-　Core Servers’ main responsibility is to safeguard data via Raft protocol  once a majority of Core Servers in a cluster (N/2+1) have accepted the transaction, it is safe to ack">
 
 
 
@@ -322,8 +322,13 @@
       
 
       
-        <h2 id="Causal-cluster"><a href="#Causal-cluster" class="headerlink" title="Causal cluster"></a>Causal cluster</h2><p>### </p>
-<h2 id="HA-cluster"><a href="#HA-cluster" class="headerlink" title="HA cluster"></a>HA cluster</h2>
+        <h2 id="Causal-cluster"><a href="#Causal-cluster" class="headerlink" title="Causal cluster"></a>Causal cluster</h2><h3 id="Core-Node"><a href="#Core-Node" class="headerlink" title="Core Node"></a>Core Node</h3><p>-　Core Servers’ main responsibility is to safeguard data via Raft protocol</p>
+<ul>
+<li>once a majority of Core Servers in a cluster (N/2+1) have accepted the transaction, it is safe to acknowledge the commit to the end user application.</li>
+<li>participate in decision making about cluster topology.</li>
+<li>Note that should the Core Server cluster suffer enough failures that it can no longer process writes, it will become read-only to preserve safety.</li>
+</ul>
+<h3 id="Replica-Node"><a href="#Replica-Node" class="headerlink" title="Replica Node"></a>Replica Node</h3><h2 id="HA-cluster"><a href="#HA-cluster" class="headerlink" title="HA cluster"></a>HA cluster</h2>
       
     </div>
     
@@ -362,6 +367,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/11/raft-protocal/" rel="prev" title="raft protocol">
+                raft protocol <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -438,7 +447,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -493,7 +502,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Causal-cluster"><span class="nav-number">1.</span> <span class="nav-text">Causal cluster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HA-cluster"><span class="nav-number">2.</span> <span class="nav-text">HA cluster</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Causal-cluster"><span class="nav-number">1.</span> <span class="nav-text">Causal cluster</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-Node"><span class="nav-number">1.1.</span> <span class="nav-text">Core Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Replica-Node"><span class="nav-number">1.2.</span> <span class="nav-text">Replica Node</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HA-cluster"><span class="nav-number">2.</span> <span class="nav-text">HA cluster</span></a></li></ol></div>
             
 
           </div>
